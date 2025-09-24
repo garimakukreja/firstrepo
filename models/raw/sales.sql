@@ -4,4 +4,4 @@
 ) }}
 
 
-select * FROM {{ source('dev', 'sales') }}
+select * FROM {{ source('public', 'sales') }}
