@@ -4,4 +4,7 @@
 ) }}
 
 
-select * FROM {{ source('public', 'sales') }}
+select
+	*
+from {{ ref('sales') }} 
+
