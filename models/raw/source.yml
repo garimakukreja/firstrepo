@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: Redshift # A logical name for your source
+    database: dev # The name of your Redshift database
+    schema: public # The schema within your database where the tables reside
+    tables:
+      - name: sales # The name of a table in the 'public' schema
