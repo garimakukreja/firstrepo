@@ -6,5 +6,5 @@
 
 select
 	*
-from {{ ref('sales') }} 
+from {{ source('Redshift', 'sales') }}
 
