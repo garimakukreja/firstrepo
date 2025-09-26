@@ -1,4 +1,4 @@
-{{{{ config(materialized="incremental", unique_key="integration_id") }}}}
+{{ config(materialized="incremental", unique_key="integration_id") }}
 
 select
   *,

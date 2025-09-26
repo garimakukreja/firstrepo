@@ -1,0 +1,9 @@
+version: 2
+sources:
+  - name: redshift_src
+    database: dev
+    schema: staging
+    tables:
+      - name: ap_batches_all
+      - name: ap_checks_all
+      
