@@ -1,18 +1,13 @@
-name: 'redshift_seq_demo'
-version: '1.0'
+# dbt_project.yml
+name: Deckers
+version: "1.0.0"
 config-version: 2
-
-profile: 'redshift_profile'
-
-# Automatically create sequences for all sources at run start
-on-run-start:
-  - "{{ create_sequences_for_sources('staging') }}"
-
+profile: default
+ 
 models:
-  redshift_seq_demo:
+  Deckers:
+    +schema: testing     # default schema under the connected DB
     staging:
-      +materialized: incremental
-      +schema: staging
-    marts:
-      +materialized: table
-      +schema: marts
+      +schema: consumption
+    
+ 
