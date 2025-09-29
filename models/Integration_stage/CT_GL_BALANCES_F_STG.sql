@@ -1,4 +1,5 @@
-{{ config(materialized = 'table') }} with gl_balances as (
+{{ config(materialized = 'table', tags = "GL") }} 
+with gl_balances as (
   select 
     * 
   from 

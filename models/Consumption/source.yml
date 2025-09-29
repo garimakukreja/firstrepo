@@ -5,6 +5,9 @@ sources:
   tables:
   - name: ar_adjustments_all
   - name: ar_receivable_applications_all
+  - name: gl_balances
+  - name: gl_periods
+  - name: gl_daily_rates
   - name: ar_distributions_all
   - name: ar_cash_receipts_all
   - name: ra_customer_trx_lines_all
