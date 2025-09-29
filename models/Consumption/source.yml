@@ -5,5 +5,5 @@ sources:
     schema: staging
     tables:
       - name: ap_batches_all
-      - name: ap_checks_all
+      - name: ap_invoice_payments_all
       
