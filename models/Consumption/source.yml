@@ -1,9 +1,44 @@
 version: 2
 sources:
-  - name: redshift_src
-    database: dev
-    schema: staging
-    tables:
-      - name: ap_batches_all
-      - name: ap_invoice_payments_all
-      
+- name: redshift_src
+  schema: staging
+  tables:
+  - name: ar_adjustments_all
+  - name: ar_receivable_applications_all
+  - name: ar_distributions_all
+  - name: ar_cash_receipts_all
+  - name: ra_customer_trx_lines_all
+  - name: ra_salesreps_all
+  - name: mtl_units_of_measure_tl
+  - name: ar_payment_schedules_all
+  - name: ra_customer_trx_all
+  - name: ra_cust_trx_line_gl_dist_all
+  - name: ra_cust_trx_types_all
+  - name: gl_ledgers
+  - name: ra_terms_tl
+  - name: ra_batch_sources_all
+  - name: ce_bank_accounts
+  - name: ar_collectors
+  - name: hz_cust_site_uses_all
+  - name: ap_batches_all
+  - name: ap_checks_all
+  - name: ap_hold_codes
+  - name: ap_holds_all
+  - name: ap_invoice_distributions_all
+  - name: ap_invoice_lines_all
+  - name: ap_invoice_payments_all
+  - name: ap_invoices_all
+  - name: ap_lookup_codes
+  - name: ap_payment_schedules_all
+  - name: ap_terms_tl
+  - name: ce_payment_documents
+  - name: fnd_lookup_values
+  - name: gl_code_combinations
+  - name: gl_ledgers
+  - name: hz_parties
+  - name: hz_party_sites
+  - name: iby_payment_methods_tl
+  - name: po_distributions_all
+  - name: po_headers_all
+  - name: po_line_locations_all
+  - name: po_lines_all
