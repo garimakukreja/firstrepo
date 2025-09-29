@@ -1,5 +1,0 @@
-version: 2
-sources:
-- name: redshift_src
-  schema: staging
-  tables: []
