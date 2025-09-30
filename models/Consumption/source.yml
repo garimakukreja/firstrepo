@@ -3,6 +3,7 @@ sources:
 - name: redshift_src
   schema: staging
   tables:
+  - name: gl_je_lines
   - name: gl_daily_rates
   - name: gl_periods
   - name: gl_balances
