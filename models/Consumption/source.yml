@@ -3,6 +3,7 @@ sources:
 - name: redshift_src
   schema: staging
   tables:
+  - name: gl_balances
   - name: fnd_flex_value_sets
   - name: ar_adjustments_all
   - name: ar_receivable_applications_all
@@ -34,7 +35,6 @@ sources:
   - name: ce_payment_documents
   - name: fnd_lookup_values
   - name: gl_code_combinations
-  - name: gl_ledgers
   - name: hz_parties
   - name: hz_party_sites
   - name: iby_payment_methods_tl
