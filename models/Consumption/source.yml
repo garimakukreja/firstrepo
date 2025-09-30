@@ -3,11 +3,9 @@ sources:
 - name: redshift_src
   schema: staging
   tables:
+  - name: fnd_flex_value_sets
   - name: ar_adjustments_all
   - name: ar_receivable_applications_all
-  - name: gl_balances
-  - name: gl_periods
-  - name: gl_daily_rates
   - name: ar_distributions_all
   - name: ar_cash_receipts_all
   - name: ra_customer_trx_lines_all
@@ -17,6 +15,7 @@ sources:
   - name: ra_customer_trx_all
   - name: ra_cust_trx_line_gl_dist_all
   - name: ra_cust_trx_types_all
+  - name: gl_ledgers
   - name: ra_terms_tl
   - name: ra_batch_sources_all
   - name: ce_bank_accounts
