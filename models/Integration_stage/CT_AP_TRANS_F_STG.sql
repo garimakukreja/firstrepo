@@ -1,9 +1,5 @@
 {{ config(materialized='table') }}
 
-    with
-    invoice_date as (
-    select * from {{ ref("invoice_date") }}
-),
 ap_invoices_all as (
     select * from {{ ref("ap_invoices_all") }}
 ),
