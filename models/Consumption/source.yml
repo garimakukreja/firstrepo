@@ -31,6 +31,7 @@ sources:
   - name: ra_salesreps_all
   - name: mtl_units_of_measure_tl
   - name: ar_payment_schedules_all
+  - name: gl_daily_rates
   - name: ra_customer_trx_all
   - name: ra_cust_trx_line_gl_dist_all
   - name: ra_cust_trx_types_all
