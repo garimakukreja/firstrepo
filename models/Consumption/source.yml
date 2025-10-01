@@ -5,6 +5,8 @@ sources:
   tables:
   - name: org_organization_definitions
   - name: hr_operating_units
+  - name: hr_organization_information
+  - name: gl_daily_rates
   - name: xle_registrations
   - name: iby_payments_all
   - name: mtl_system_items_b
@@ -31,7 +33,6 @@ sources:
   - name: ra_salesreps_all
   - name: mtl_units_of_measure_tl
   - name: ar_payment_schedules_all
-  - name: gl_daily_rates
   - name: ra_customer_trx_all
   - name: ra_cust_trx_line_gl_dist_all
   - name: ra_cust_trx_types_all
