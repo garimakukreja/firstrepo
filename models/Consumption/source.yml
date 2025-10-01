@@ -4,6 +4,7 @@ sources:
   schema: staging
   tables:
   - name: xle_entity_profiles
+  - name: hz_locations
   - name: fnd_id_flex_segments
   - name: ap_suppliers
   - name: ap_supplier_sites_all
