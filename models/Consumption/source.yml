@@ -4,6 +4,7 @@ sources:
   schema: staging
   tables:
   - name: xle_entity_profiles
+  - name: ap_suppliers
   - name: ap_supplier_sites_all
   - name: gl_budget_versions
   - name: gl_je_headers
