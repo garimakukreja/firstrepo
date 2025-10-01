@@ -1,4 +1,4 @@
-{{ config(materialized="view") }}
+{{ config(materialized="view", unique_key="integration_id") }}
 
 select
   *,
