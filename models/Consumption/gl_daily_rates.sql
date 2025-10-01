@@ -2,5 +2,5 @@
 
 select
   *,
-  batch_id as integration_id
+  ['FROM_CURRENCY', 'TO_CURRENCY', 'CONVERSION_DATE', 'CONVERSION_TYPE'] as integration_id
 from {{ source("redshift_src", "gl_daily_rates") }}
