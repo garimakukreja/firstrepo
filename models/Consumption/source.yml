@@ -4,6 +4,7 @@ sources:
   schema: staging
   tables:
   - name: org_organization_definitions
+  - name: hr_operating_units
   - name: gl_daily_rates
   - name: xle_registrations
   - name: iby_payments_all
@@ -20,6 +21,7 @@ sources:
   - name: gl_budget_versions
   - name: gl_je_headers
   - name: gl_je_lines
+  - name: gl_daily_rates
   - name: gl_periods
   - name: gl_balances
   - name: fnd_flex_value_sets
