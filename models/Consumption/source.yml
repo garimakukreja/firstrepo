@@ -3,7 +3,16 @@ sources:
 - name: redshift_src
   schema: staging
   tables:
+  - name: org_organization_definitions
+  - name: gl_daily_rates
+  - name: xle_registrations
+  - name: iby_payments_all
+  - name: mtl_system_items_b
+  - name: mtl_parameters
+  - name: hr_all_organization_units
   - name: xle_entity_profiles
+  - name: hr_all_organization_units_tl
+  - name: hr_locations_all
   - name: hz_locations
   - name: fnd_id_flex_segments
   - name: ap_suppliers
