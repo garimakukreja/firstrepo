@@ -5,7 +5,6 @@ sources:
   tables:
   - name: org_organization_definitions
   - name: hr_operating_units
-  - name: gl_daily_rates
   - name: xle_registrations
   - name: iby_payments_all
   - name: mtl_system_items_b
