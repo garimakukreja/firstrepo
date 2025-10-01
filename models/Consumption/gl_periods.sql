@@ -2,5 +2,5 @@
 
 select
   *,
-  ['PERIOD_SET_NAME', 'PERIOD_NAME', 'PERIOD_TYPE'] as integration_id
+  ['PERIOD_SET_NAME', 'PERIOD_NAME'] as integration_id
 from {{ source("redshift_src", "gl_periods") }}
