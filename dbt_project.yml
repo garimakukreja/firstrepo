@@ -12,8 +12,6 @@ models:
     Integration_stage:      # intermediate transformations
       +schema: Integration_stage
       +materialized: view
-    Integration_gold:      # final reporting/consumption layer
-      +schema: Integration_gold
-      +materialized: view
+
 
    
