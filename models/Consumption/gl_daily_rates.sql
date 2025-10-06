@@ -2,5 +2,8 @@
 
 select
   *,
-  ['FROM_CURRENCY', 'TO_CURRENCY', 'CONVERSION_DATE', 'CONVERSION_TYPE'] as integration_id
+  CAST(from_currency AS VARCHAR) || '~' ||
+  CAST(to_currency AS VARCHAR) || '~' ||
+  TO_CHAR(conversion_date, 'YYYYMMDD') || '~' ||
+  CAST(conversion_type AS VARCHAR) AS integration_id
 from {{ source("redshift_src", "gl_daily_rates") }}
