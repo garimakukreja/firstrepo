@@ -1,6 +1,9 @@
-{{ config(materialized="view", unique_key="integration_id") }}
+{{ config(materialized="view") }}
 
 select
   *,
-  ['APPLICATION_ID', 'ID_FLEX_CODE', 'ID_FLEX_NUM', 'APPLICATION_COLUMN_NAME'] as integration_id
+  CAST(application_id AS VARCHAR) || '~' ||
+  id_flex_code || '~' ||
+  CAST(id_flex_num AS VARCHAR) || '~' ||
+  application_column_name AS integration_id
 from {{ source("redshift_src", "fnd_id_flex_segments") }}
