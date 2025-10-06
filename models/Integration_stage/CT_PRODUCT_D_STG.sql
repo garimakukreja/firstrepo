@@ -1,16 +1,144 @@
 {{ config(materialized='table') }}
 
-    with
-    mtl_system_items_b as (
-    select * from {{ ref("mtl_system_items_b") }}
+WITH 
+mtl_system_items_b AS (
+    SELECT * FROM {{ ref("mtl_system_items_b") }}
 ),
-mtl_parameters as (
-    select * from {{ ref("mtl_parameters") }}
+mtl_parameters AS (
+    SELECT * FROM {{ ref("mtl_parameters") }}
 ),
-fnd_lookup_values as (
-    select * from {{ ref("fnd_lookup_values") }}
+fnd_lookup_values AS (
+    SELECT * FROM {{ ref("fnd_lookup_values") }}
 ),
-ct_product_d_stg as (
-    SELECT COALESCE(PRODUCT_JOIN_A.SEGMENT1, PRODUCT_JOIN_A.SEGMENT3) AS product_num, PRODUCT_JOIN_A.description AS product_name, PRODUCT_JOIN_A.item_type AS product_type_code, PRODUCT_JOIN_A.meaning AS product_type_desc, NULL AS basic_product, PRODUCT_JOIN_A.config_model_type AS config_prod_ind, PRODUCT_JOIN_A.container_type_code AS container_code, NULL AS container_desc, PRODUCT_JOIN_A.planning_make_buy_code AS make_buy_ind, NULL AS prod_grp_code, NULL AS prod_grp_desc, NULL AS storage_type_code, NULL AS storage_type_desc, PRODUCT_JOIN_A.customer_order_flag AS custom_prod_flag, PRODUCT_JOIN_A.returnable_flag AS rtrn_defective_flag, PRODUCT_JOIN_A.serviceable_component_flag AS sales_prod_flag, PRODUCT_JOIN_A.serviceable_product_flag AS sales_srvc_flag, PRODUCT_JOIN_A.serial_status_enabled AS serialized_flag, PRODUCT_JOIN_A.std_lot_size AS item_size, NULL AS vendor_loc, NULL AS vendor_name, PRODUCT_JOIN_A.primary_uom_code AS sales_uom_code, PRODUCT_JOIN_A.primary_unit_of_measure AS sales_uom_desc, PRODUCT_JOIN_A.serial_number_control_code AS serialized_count, NULL AS ship_type_code, NULL AS ship_type_desc, NULL AS source_of_supply, NULL AS sprt_withdrawl_date, PRODUCT_JOIN_A.primary_uom_code AS uom, PRODUCT_JOIN_A.volume_uom_code AS base_uom_code, NULL AS base_uom_desc, PRODUCT_JOIN_A.unit_weight AS unit_gross_weight, PRODUCT_JOIN_A.unit_weight AS unit_net_weight, PRODUCT_JOIN_A.unit_volume AS unit_volume, NULL AS univ_prod_code, NULL AS univ_prod_desc, NULL AS application_flag, NULL AS gross_mrgn, PRODUCT_JOIN_A.inventory_item_flag AS inventory_flag, PRODUCT_JOIN_A.planning_make_buy_code AS make_code, NULL AS model_code, NULL AS model_yr, PRODUCT_JOIN_A.customer_order_enabled_flag AS orderable_flag, PRODUCT_JOIN_A.item_type AS prod_type, PRODUCT_JOIN_A.approval_status AS status, NULL AS sub_type, PRODUCT_JOIN_A.rounding_factor AS unit_conv_factor, NULL AS prod_hier1_code, NULL AS prod_hier1_name, NULL AS prod_hier2_code, NULL AS prod_hier2_name, NULL AS prod_hier3_code, NULL AS prod_hier3_name, NULL AS prod_hier4_code, NULL AS prod_hier4_name, NULL AS prod_hier5_code, NULL AS prod_hier5_name, NULL AS prod_hier6_code, NULL AS prod_hier6_name, NULL AS prod_cat1_key, NULL AS prod_cat2_key, NULL AS prod_cat3_key, NULL AS prod_cat4_key, NULL AS prod_cat5_key, NULL AS prod_cat6_key, NULL AS prod_cat7_key, NULL AS prod_cat8_key, NULL AS prod_cat9_key, NULL AS prod_cat10_key, NULL AS product_category_flag, PRODUCT_JOIN_A.creation_date AS creation_date, PRODUCT_JOIN_A.last_update_date AS last_update_date, PRODUCT_JOIN_A.created_by AS created_by, PRODUCT_JOIN_A.last_updated_by AS last_updated_by, TO_CHAR(PRODUCT_JOIN_A.inventory_item_id) AS integration_id, 1000 AS datasource_num_id, 'Y' AS current_flag, 'N' AS delete_flag, GETDATE() AS w_insert_dt, GETDATE() AS w_update_dt FROM ( SELECT mtl_system_items_b.inventory_item_id, mtl_system_items_b.last_update_date, mtl_system_items_b.creation_date, mtl_system_items_b.created_by, mtl_system_items_b.description, mtl_system_items_b.segment1, mtl_system_items_b.segment3, mtl_system_items_b.customer_order_flag, mtl_system_items_b.inventory_item_flag, mtl_system_items_b.customer_order_enabled_flag, mtl_system_items_b.returnable_flag, mtl_system_items_b.rounding_factor, mtl_system_items_b.serial_number_control_code, mtl_system_items_b.unit_weight, mtl_system_items_b.volume_uom_code, mtl_system_items_b.unit_volume, mtl_system_items_b.std_lot_size, mtl_system_items_b.primary_uom_code, mtl_system_items_b.primary_unit_of_measure, mtl_system_items_b.planning_make_buy_code, mtl_system_items_b.serviceable_component_flag, mtl_system_items_b.serviceable_product_flag, mtl_system_items_b.item_type, mtl_system_items_b.container_type_code, mtl_system_items_b.serial_status_enabled, mtl_system_items_b.config_model_type, mtl_system_items_b.approval_status, fnd_lookup_values.meaning, fnd_lookup_values.last_updated_by FROM mtl_system_items_b INNER JOIN mtl_parameters ON mtl_parameters.organization_id = mtl_system_items_b.organization_id AND mtl_parameters.organization_id = mtl_parameters.master_organization_id LEFT JOIN fnd_lookup_values ON fnd_lookup_values.lookup_code = mtl_system_items_b.item_type WHERE mtl_parameters.master_organization_id IN (204) AND fnd_lookup_values.lookup_type = 'ITEM_TYPE' AND fnd_lookup_values.language = 'US' AND COALESCE(fnd_lookup_values.view_application_id, 0) != 660 AND CAST(mtl_system_items_b.last_update_date AS TIMESTAMP) >= CAST('$LAST_RUN_DATE$' AS TIMESTAMP) ) PRODUCT_JOIN_A
+ct_product_d_stg AS (
+    SELECT 
+        COALESCE(PRODUCT_JOIN_A.segment1, PRODUCT_JOIN_A.segment3) AS product_num,
+        PRODUCT_JOIN_A.description AS product_name,
+        PRODUCT_JOIN_A.item_type AS product_type_code,
+        PRODUCT_JOIN_A.meaning AS product_type_desc,
+        NULL AS basic_product,
+        PRODUCT_JOIN_A.config_model_type AS config_prod_ind,
+        PRODUCT_JOIN_A.container_type_code AS container_code,
+        NULL AS container_desc,
+        PRODUCT_JOIN_A.planning_make_buy_code AS make_buy_ind,
+        NULL AS prod_grp_code,
+        NULL AS prod_grp_desc,
+        NULL AS storage_type_code,
+        NULL AS storage_type_desc,
+        PRODUCT_JOIN_A.customer_order_flag AS custom_prod_flag,
+        PRODUCT_JOIN_A.returnable_flag AS rtrn_defective_flag,
+        PRODUCT_JOIN_A.serviceable_component_flag AS sales_prod_flag,
+        PRODUCT_JOIN_A.serviceable_product_flag AS sales_srvc_flag,
+        PRODUCT_JOIN_A.serial_status_enabled AS serialized_flag,
+        PRODUCT_JOIN_A.std_lot_size AS item_size,
+        NULL AS vendor_loc,
+        NULL AS vendor_name,
+        PRODUCT_JOIN_A.primary_uom_code AS sales_uom_code,
+        PRODUCT_JOIN_A.primary_unit_of_measure AS sales_uom_desc,
+        PRODUCT_JOIN_A.serial_number_control_code AS serialized_count,
+        NULL AS ship_type_code,
+        NULL AS ship_type_desc,
+        NULL AS source_of_supply,
+        NULL AS sprt_withdrawl_date,
+        PRODUCT_JOIN_A.primary_uom_code AS uom,
+        PRODUCT_JOIN_A.volume_uom_code AS base_uom_code,
+        NULL AS base_uom_desc,
+        PRODUCT_JOIN_A.unit_weight AS unit_gross_weight,
+        PRODUCT_JOIN_A.unit_weight AS unit_net_weight,
+        PRODUCT_JOIN_A.unit_volume AS unit_volume,
+        NULL AS univ_prod_code,
+        NULL AS univ_prod_desc,
+        NULL AS application_flag,
+        NULL AS gross_mrgn,
+        PRODUCT_JOIN_A.inventory_item_flag AS inventory_flag,
+        PRODUCT_JOIN_A.planning_make_buy_code AS make_code,
+        NULL AS model_code,
+        NULL AS model_yr,
+        PRODUCT_JOIN_A.customer_order_enabled_flag AS orderable_flag,
+        PRODUCT_JOIN_A.item_type AS prod_type,
+        PRODUCT_JOIN_A.approval_status AS status,
+        NULL AS sub_type,
+        PRODUCT_JOIN_A.rounding_factor AS unit_conv_factor,
+        NULL AS prod_hier1_code,
+        NULL AS prod_hier1_name,
+        NULL AS prod_hier2_code,
+        NULL AS prod_hier2_name,
+        NULL AS prod_hier3_code,
+        NULL AS prod_hier3_name,
+        NULL AS prod_hier4_code,
+        NULL AS prod_hier4_name,
+        NULL AS prod_hier5_code,
+        NULL AS prod_hier5_name,
+        NULL AS prod_hier6_code,
+        NULL AS prod_hier6_name,
+        NULL AS prod_cat1_key,
+        NULL AS prod_cat2_key,
+        NULL AS prod_cat3_key,
+        NULL AS prod_cat4_key,
+        NULL AS prod_cat5_key,
+        NULL AS prod_cat6_key,
+        NULL AS prod_cat7_key,
+        NULL AS prod_cat8_key,
+        NULL AS prod_cat9_key,
+        NULL AS prod_cat10_key,
+        NULL AS product_category_flag,
+        PRODUCT_JOIN_A.creation_date AS creation_date,
+        PRODUCT_JOIN_A.last_update_date AS last_update_date,
+        PRODUCT_JOIN_A.created_by AS created_by,
+        PRODUCT_JOIN_A.last_updated_by AS last_updated_by,
+
+        -- ✅ Replaced Oracle TO_CHAR with Redshift CAST
+        CAST(PRODUCT_JOIN_A.inventory_item_id AS VARCHAR) AS integration_id,
+
+        1000 AS datasource_num_id,
+        'Y' AS current_flag,
+        'N' AS delete_flag,
+
+        GETDATE() AS w_insert_dt,
+        GETDATE() AS w_update_dt
+    FROM (
+        SELECT 
+            mtl_system_items_b.inventory_item_id,
+            mtl_system_items_b.last_update_date,
+            mtl_system_items_b.creation_date,
+            mtl_system_items_b.created_by,
+            mtl_system_items_b.description,
+            mtl_system_items_b.segment1,
+            mtl_system_items_b.segment3,
+            mtl_system_items_b.customer_order_flag,
+            mtl_system_items_b.inventory_item_flag,
+            mtl_system_items_b.customer_order_enabled_flag,
+            mtl_system_items_b.returnable_flag,
+            mtl_system_items_b.rounding_factor,
+            mtl_system_items_b.serial_number_control_code,
+            mtl_system_items_b.unit_weight,
+            mtl_system_items_b.volume_uom_code,
+            mtl_system_items_b.unit_volume,
+            mtl_system_items_b.std_lot_size,
+            mtl_system_items_b.primary_uom_code,
+            mtl_system_items_b.primary_unit_of_measure,
+            mtl_system_items_b.planning_make_buy_code,
+            mtl_system_items_b.serviceable_component_flag,
+            mtl_system_items_b.serviceable_product_flag,
+            mtl_system_items_b.item_type,
+            mtl_system_items_b.container_type_code,
+            mtl_system_items_b.serial_status_enabled,
+            mtl_system_items_b.config_model_type,
+            mtl_system_items_b.approval_status,
+            fnd_lookup_values.meaning,
+            fnd_lookup_values.last_updated_by
+        FROM mtl_system_items_b
+        INNER JOIN mtl_parameters 
+            ON mtl_parameters.organization_id = mtl_system_items_b.organization_id
+           AND mtl_parameters.organization_id = mtl_parameters.master_organization_id
+        LEFT JOIN fnd_lookup_values 
+            ON fnd_lookup_values.lookup_code = mtl_system_items_b.item_type
+        WHERE 
+            mtl_parameters.master_organization_id IN (204)
+            AND fnd_lookup_values.lookup_type = 'ITEM_TYPE'
+            AND fnd_lookup_values.language = 'US'
+            -- Uncomment when using incremental load
+            -- AND CAST(mtl_system_items_b.last_update_date AS TIMESTAMP) >= CAST('2025-09-01' AS TIMESTAMP)
+    ) PRODUCT_JOIN_A
 )
-    select * from ct_product_d_stg
+SELECT * FROM ct_product_d_stg
