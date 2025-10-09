@@ -1,6 +1,6 @@
-{{ config(materialized="view", unique_key="integration_id") }}
+{{ config(materialized="incremental", unique_key=["xle_entity_profiles_key"]) }}
 
 select
   *,
-  LEGAL_ENTITY_ID as integration_id
+  legal_entity_id as xle_entity_profiles_key
 from {{ source("redshift_src", "xle_entity_profiles") }}
