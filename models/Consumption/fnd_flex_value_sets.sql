@@ -1,6 +1,6 @@
-{{ config(materialized="view", unique_key="integration_id") }}
+{{ config(materialized="incremental", unique_key=["fnd_flex_value_sets_key"]) }}
 
 select
   *,
-  FLEX_VALUE_SET_ID as integration_id
+  flex_value_set_id as fnd_flex_value_sets_key
 from {{ source("redshift_src", "fnd_flex_value_sets") }}
