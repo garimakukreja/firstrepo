@@ -1,6 +1,6 @@
-{{ config(materialized="incremental", unique_key=["gl_code_combination_key"]) }}
+{{ config(materialized="incremental", unique_key="integration_id") }}
 
 select
   *,
-  code_combination_id as gl_code_combination_key
-from {{ source("redshift_src", "gl_code_combinations") }}
+  code_combination_id as integration_id
+from {{ source("ebs", "gl_code_combinations") }}
