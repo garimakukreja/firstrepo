@@ -1,6 +1,6 @@
-{{ config(materialized="incremental", unique_key=["xle_registrations_key"]) }}
+{{ config(materialized="incremental", unique_key="integration_id") }}
 
 select
   *,
-  registration_id as xle_registrations_key
-from {{ source("redshift_src", "xle_registrations") }}
+  registration_id as integration_id
+from {{ source("ebs", "xle_registrations") }}
