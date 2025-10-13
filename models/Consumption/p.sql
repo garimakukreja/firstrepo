@@ -3,4 +3,4 @@
 select
   *,
   o as integration_id
-from {{ source("ebs", "po_distributions_all") }}
+from {{ source("ebs", "po_headers_all") }}
