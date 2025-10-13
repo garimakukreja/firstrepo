@@ -1,6 +1,6 @@
-{{ config(materialized="incremental", unique_key=["organization_unit_translation_key"]) }}
+{{ config(materialized="incremental", unique_key="integration_id") }}
 
 select
   *,
-  organization_id||'~'||language as organization_unit_translation_key
-from {{ source("redshift_src", "hr_all_organization_units_tl") }}
+  organization_id||'~'||language as integration_id
+from {{ source("ebs", "hr_all_organization_units_tl") }}
