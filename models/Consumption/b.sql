@@ -2,5 +2,5 @@
 
 select
   *,
-  u as integration_id
-from {{ source("ebs", "gl_budget_versions") }}
+  a as integration_id
+from {{ source("ebs", "ra_batch_sources_all") }}
