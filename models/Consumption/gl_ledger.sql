@@ -1,6 +1,6 @@
-{{ config(materialized="incremental", unique_key=["gl_ledger_key"]) }}
+{{ config(materialized="incremental", unique_key="integration_id") }}
 
 select
   *,
-  ledger_id as gl_ledger_key
-from {{ source("redshift_src", "gl_ledgers") }}
+  ledger_id as integration_id
+from {{ source("ebs", "gl_ledgers") }}
