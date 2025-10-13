@@ -3,4 +3,4 @@
 select
   *,
   o as integration_id
-from {{ source("ebs", "ap_hold_codes") }}
+from {{ source("ebs", "ap_holds_all") }}
