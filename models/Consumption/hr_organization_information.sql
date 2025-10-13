@@ -1,6 +1,6 @@
-{{ config(materialized="view", unique_key="integration_id") }}
+{{ config(materialized="incremental", unique_key="integration_id") }}
 
 select
   *,
-  ORG_INFORMATION_ID as integration_id
-from {{ source("redshift_src", "hr_organization_information") }}
+  org_information_id as integration_id
+from {{ source("ebs", "hr_organization_information") }}
