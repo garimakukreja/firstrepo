@@ -1,6 +1,6 @@
-{{ config(materialized="incremental", unique_key=["org_organization_definitions_key"]) }}
+{{ config(materialized="incremental", unique_key="integration_id") }}
 
 select
   *,
-  organization_id as org_organization_definitions_key
-from {{ source("redshift_src", "org_organization_definitions") }}
+  organization_id as integration_id
+from {{ source("ebs", "org_organization_definitions") }}
