@@ -1,6 +1,6 @@
 version: 2
 sources:
-- name: redshift_src
+- name: ebs
   schema: staging
   tables:
   - name: xle_entity_profiles
