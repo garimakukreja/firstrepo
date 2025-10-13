@@ -3,4 +3,4 @@
 select
   *,
   o as integration_id
-from {{ source("ebs", "ap_lookup_codes") }}
+from {{ source("ebs", "fnd_lookup_values") }}
