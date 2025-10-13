@@ -1,6 +1,6 @@
-{{ config(materialized="incremental", unique_key=["hz_party_key"]) }}
+{{ config(materialized="incremental", unique_key="integration_id") }}
 
 select
   *,
-  party_id as hz_party_key
-from {{ source("redshift_src", "hz_parties") }}
+  party_id as integration_id
+from {{ source("ebs", "hz_parties") }}
