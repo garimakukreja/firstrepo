@@ -3,4 +3,4 @@
 select
   *,
   e as integration_id
-from {{ source("ebs", "ap_supplier_sites_all") }}
+from {{ source("ebs", "ap_suppliers") }}
