@@ -1,6 +1,6 @@
-{{ config(materialized="incremental", unique_key=["hz_location_key"]) }}
+{{ config(materialized="incremental", unique_key="integration_id") }}
 
 select
   *,
-  location_id as hz_location_key
-from {{ source("redshift_src", "hz_locations") }}
+  location_id as integration_id
+from {{ source("ebs", "hz_locations") }}
