@@ -62,3 +62,4 @@ sources:
   - name: po_line_locations_all
   - name: po_lines_all
   - name: hr_operating_units
+  - name: fnd_flex_values_vl
