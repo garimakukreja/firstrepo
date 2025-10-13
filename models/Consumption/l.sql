@@ -2,5 +2,5 @@
 
 select
   *,
-  o as integration_id
-from {{ source("ebs", "fnd_lookup_values") }}
+  i as integration_id
+from {{ source("ebs", "po_line_locations_all") }}
