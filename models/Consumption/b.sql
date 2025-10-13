@@ -3,4 +3,4 @@
 select
   *,
   a as integration_id
-from {{ source("ebs", "ra_batch_sources_all") }}
+from {{ source("ebs", "ce_bank_accounts") }}
