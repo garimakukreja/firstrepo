@@ -3,4 +3,4 @@
 select
   *,
   n as integration_id
-from {{ source("ebs", "ap_invoices_all") }}
+from {{ source("ebs", "ap_payment_schedules_all") }}
