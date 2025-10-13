@@ -1,6 +1,6 @@
-{{ config(materialized="incremental", unique_key=["ar_payment_schedule_key"]) }}
+{{ config(materialized="incremental", unique_key="integration_id") }}
 
 select
   *,
-  payment_schedule_id as ar_payment_schedule_key
-from {{ source("redshift_src", "ar_payment_schedules_all") }}
+  payment_schedule_id as integration_id
+from {{ source("ebs", "ar_payment_schedules_all") }}
