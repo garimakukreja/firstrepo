@@ -2,5 +2,5 @@
 
 select
   *,
-  a as integration_id
-from {{ source("ebs", "ce_payment_documents") }}
+  o as integration_id
+from {{ source("ebs", "po_distributions_all") }}
