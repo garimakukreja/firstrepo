@@ -54,7 +54,6 @@ sources:
   - name: ce_payment_documents
   - name: fnd_lookup_values
   - name: gl_code_combinations
-  - name: gl_ledgers
   - name: hz_parties
   - name: hz_party_sites
   - name: iby_payment_methods_tl
