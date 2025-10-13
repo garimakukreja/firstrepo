@@ -1,6 +1,6 @@
-{{ config(materialized="incremental", unique_key=["material_parameter_key"]) }}
+{{ config(materialized="incremental", unique_key="integration_id") }}
 
 select
   *,
-  organization_id as material_parameter_key
-from {{ source("redshift_src", "mtl_parameters") }}
+  organization_id as integration_id
+from {{ source("ebs", "mtl_parameters") }}
