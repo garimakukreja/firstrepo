@@ -1,10 +1,10 @@
 {{ config(materialized="table", unique_key="integration_id") }}
 
-        {% do mkTruncate_stage_table() %}
+       {# {% do mkTruncate_stage_table() %}
 
         {% set src_tables = ['fact_ap_holds_f_stg', 'dim_supplier_stg', 'dim_business_unit_stg', 'dim_gl_ledgers_stg', 'dim_gl_account_stg', 'dim_product_stg', 'dim_org_stg', 'dim_legal_entity_stg', 'dim_gl_daily_rates_stg'] %}
         {% set last_update_date = mkget_last_update_date(src_tables) %}
-
+        #}
         with
             fact_ap_holds_f_stg as (
     select * from {{ ref("fact_ap_holds_f_stg") }}
@@ -38,4 +38,4 @@ select coalesce(dim_supplier_stg.supplier_key, 0) as supplier_key, coalesce(dim_
 )
 
         select *
-        from fact_ap_holds_f;
+        from fact_ap_holds_f
