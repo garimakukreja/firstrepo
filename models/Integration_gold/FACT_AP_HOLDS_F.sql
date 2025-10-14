@@ -2,12 +2,12 @@
 
         {% do mkTruncate_stage_table() %}
 
-        {% set src_tables = ['ct_ap_holds_f_stg', 'dim_supplier_stg', 'dim_business_unit_stg', 'dim_gl_ledgers_stg', 'dim_gl_account_stg', 'dim_product_stg', 'dim_org_stg', 'dim_legal_entity_stg', 'dim_gl_daily_rates_stg'] %}
+        {% set src_tables = ['fact_ap_holds_f_stg', 'dim_supplier_stg', 'dim_business_unit_stg', 'dim_gl_ledgers_stg', 'dim_gl_account_stg', 'dim_product_stg', 'dim_org_stg', 'dim_legal_entity_stg', 'dim_gl_daily_rates_stg'] %}
         {% set last_update_date = mkget_last_update_date(src_tables) %}
 
         with
-            ct_ap_holds_f_stg as (
-    select * from {{ ref("ct_ap_holds_f_stg") }}
+            fact_ap_holds_f_stg as (
+    select * from {{ ref("fact_ap_holds_f_stg") }}
 ),
 dim_supplier_stg as (
     select * from {{ ref("dim_supplier_stg") }}
