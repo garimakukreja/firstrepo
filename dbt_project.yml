@@ -11,7 +11,10 @@ models:
       +materialized: table
     Integration_stage:      # intermediate transformations
       +schema: Integration_stage
-      +materialized: view
+      +materialized: table
+    Integration_target:      # intermediate transformations
+      +schema: Integration_target
+      +materialized: table
 
 
    
