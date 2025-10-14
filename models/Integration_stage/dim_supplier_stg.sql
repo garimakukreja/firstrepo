@@ -2,12 +2,12 @@
 
         {% do mkTruncate_stage_table() %}
 
-        {% set src_tables = ['ap_supplier', 'ap_terms_tl', 'hz_party', 'hz_party_site', 'hz_location', 'hr_operating_units', 'ap_supplier_sites_all'] %}
+        {% set src_tables = ['ap_suppliers', 'ap_terms_tl', 'hz_party', 'hz_party_site', 'hz_location', 'hr_operating_units', 'ap_supplier_sites_all'] %}
         {% set last_update_date = mkget_last_update_date(src_tables) %}
 
         with
-            ap_supplier as (
-    select * from {{ ref("ap_supplier") }}
+            ap_suppliers as (
+    select * from {{ ref("ap_suppliers") }}
 ),
 ap_terms_tl as (
     select * from {{ ref("ap_terms_tl") }}

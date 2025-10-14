@@ -1,9 +1,9 @@
 {{ config(materialized="table", unique_key="integration_id") }}
 
-        {% do mkTruncate_stage_table() %}
+       {# {% do mkTruncate_stage_table() %}
 
         {% set src_tables = ['gl_ledger'] %}
-        {% set last_update_date = mkget_last_update_date(src_tables) %}
+        {% set last_update_date = mkget_last_update_date(src_tables) %}#}
 
         with
             gl_ledger as (

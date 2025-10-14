@@ -1,9 +1,9 @@
 {{ config(materialized="table", unique_key="integration_id") }}
 
-        {% do mkTruncate_stage_table() %}
+        {#{% do mkTruncate_stage_table() %}
 
         {% set src_tables = ['organization_information', 'hz_party', 'org_organization_definitions', 'organization_unit', 'xle_entity_profiles', 'gl_ledger', 'gl_code_combination', 'hr_locations_all', 'fnd_lookup_values'] %}
-        {% set last_update_date = mkget_last_update_date(src_tables) %}
+        {% set last_update_date = mkget_last_update_date(src_tables) %}#}
 
         with
             organization_information as (

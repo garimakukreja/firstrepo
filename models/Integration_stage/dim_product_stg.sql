@@ -1,9 +1,9 @@
 {{ config(materialized="table", unique_key="integration_id") }}
 
-        {% do mkTruncate_stage_table() %}
+        {#{% do mkTruncate_stage_table() %}
 
         {% set src_tables = ['material_system_item', 'material_parameter', 'fnd_lookup_values'] %}
-        {% set last_update_date = mkget_last_update_date(src_tables) %}
+        {% set last_update_date = mkget_last_update_date(src_tables) %}#}
 
         with
             material_system_item as (

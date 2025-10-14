@@ -1,9 +1,9 @@
 {{ config(materialized="table", unique_key="integration_id") }}
 
-        {% do mkTruncate_stage_table() %}
+        {#{% do mkTruncate_stage_table() %}
 
         {% set src_tables = ['ap_invoice_payments_all', 'ap_invoices_all', 'ap_checks_all', 'ap_payment_schedules_all', 'ap_lookup_codes', 'ce_payment_documents', 'iby_payment', 'ap_terms_tl', 'gl_ledger', 'gl_code_combination', 'iby_payment_method_translation', 'fnd_lookup_values', 'po_headers_all'] %}
-        {% set last_update_date = mkget_last_update_date(src_tables) %}
+        {% set last_update_date = mkget_last_update_date(src_tables) %}#}
 
         with
             ap_invoice_payments_all as (
