@@ -275,33 +275,33 @@ cast(coalesce(ap_invoices_all.vendor_id, 0) as varchar)
   current_date as w_insert_dt, 
   current_date as w_update_dt 
 from 
-  apps.ap_invoices_all ap_invoices_all 
-  inner join apps.ap_invoice_lines_all ap_invoice_lines_all on ap_invoices_all.invoice_id = ap_invoice_lines_all.invoice_id 
-  inner join apps.ap_invoice_distributions_all ap_invoice_distributions_all on ap_invoice_lines_all.invoice_id = ap_invoice_distributions_all.invoice_id 
+  ap_invoices_all ap_invoices_all 
+  inner join ap_invoice_lines_all ap_invoice_lines_all on ap_invoices_all.invoice_id = ap_invoice_lines_all.invoice_id 
+  inner join ap_invoice_distributions_all ap_invoice_distributions_all on ap_invoice_lines_all.invoice_id = ap_invoice_distributions_all.invoice_id 
   and ap_invoice_lines_all.line_number = ap_invoice_distributions_all.distribution_line_number 
-  left join apps.ap_batches_all ap_batches_all on ap_invoices_all.batch_id = ap_batches_all.batch_id 
-  left join apps.iby_payment_method_translation iby_payment_method_translation on ap_invoices_all.payment_method_code = iby_payment_method_translation.payment_method_code 
+  left join ap_batches_all ap_batches_all on ap_invoices_all.batch_id = ap_batches_all.batch_id 
+  left join iby_payment_method_translation iby_payment_method_translation on ap_invoices_all.payment_method_code = iby_payment_method_translation.payment_method_code 
   and coalesce(
     iby_payment_method_translation.language, 
     'us'
   ) = 'us' 
-  left join apps.ap_lookup_codes ap_lookup_codes on ap_lookup_codes.lookup_type = 'invoice type' 
+  left join ap_lookup_codes ap_lookup_codes on ap_lookup_codes.lookup_type = 'invoice type' 
   and ap_lookup_codes.lookup_code = ap_invoices_all.invoice_type_lookup_code 
-  left join apps.po_distributions_all po_distributions_all on ap_invoice_distributions_all.po_distribution_id = po_distributions_all.po_distribution_id 
-  left join apps.fnd_lookup_values fnd_lookup_values on fnd_lookup_values.lookup_type = 'invoice type' 
+  left join po_distributions_all po_distributions_all on ap_invoice_distributions_all.po_distribution_id = po_distributions_all.po_distribution_id 
+  left join fnd_lookup_values fnd_lookup_values on fnd_lookup_values.lookup_type = 'invoice type' 
   and fnd_lookup_values.language = 'us' 
   and ap_invoices_all.invoice_type_lookup_code = fnd_lookup_values.lookup_code 
-  left join apps.po_lines_all po_lines_all on po_distributions_all.po_line_id = po_lines_all.po_line_id 
-  left join apps.po_line_locations_all po_line_locations_all on po_line_locations_all.line_location_id = po_distributions_all.line_location_id 
-  left join apps.ap_lookup_codes ap_lookup_codes1 on ap_lookup_codes1.lookup_type = 'posting status' 
+  left join po_lines_all po_lines_all on po_distributions_all.po_line_id = po_lines_all.po_line_id 
+  left join po_line_locations_all po_line_locations_all on po_line_locations_all.line_location_id = po_distributions_all.line_location_id 
+  left join ap_lookup_codes ap_lookup_codes1 on ap_lookup_codes1.lookup_type = 'posting status' 
   and ap_lookup_codes1.lookup_code = ap_invoice_distributions_all.posted_flag 
-  left join apps.ap_lookup_codes ap_lookup_codes2 on ap_lookup_codes2.lookup_type = 'invoice distribution type' 
+  left join ap_lookup_codes ap_lookup_codes2 on ap_lookup_codes2.lookup_type = 'invoice distribution type' 
   and ap_lookup_codes2.lookup_code = ap_invoice_distributions_all.line_type_lookup_code 
-  left join apps.ap_lookup_codes ap_lookup_codes3 on ap_lookup_codes3.lookup_type = 'invoice line type' 
+  left join ap_lookup_codes ap_lookup_codes3 on ap_lookup_codes3.lookup_type = 'invoice line type' 
   and ap_lookup_codes3.lookup_code = ap_invoice_lines_all.line_type_lookup_code 
-  left join apps.po_headers_all po_headers_all on po_distributions_all.po_header_id = po_headers_all.po_header_id 
-  left join apps.gl_ledger cledgers on cledgers.ledger_id = ap_invoices_all.set_of_books_id 
-  left join apps.ap_terms_tl ap_terms_tl on ap_invoices_all.terms_id = ap_terms_tl.term_id 
+  left join po_headers_all po_headers_all on po_distributions_all.po_header_id = po_headers_all.po_header_id 
+  left join gl_ledger cledgers on cledgers.ledger_id = ap_invoices_all.set_of_books_id 
+  left join ap_terms_tl ap_terms_tl on ap_invoices_all.terms_id = ap_terms_tl.term_id 
   and coalesce(ap_terms_tl.language, 'us') = 'us' 
   left join (
     select 
@@ -309,13 +309,13 @@ from
       apsa.amount_remaining, 
       apsa.due_date 
     from 
-      apps.ap_payment_schedules_all apsa 
+      ap_payment_schedules_all apsa 
     where 
       apsa.payment_num = (
         select 
           max(payment_num) 
         from 
-          apps.ap_payment_schedules_all 
+          ap_payment_schedules_all 
         where 
           apsa.invoice_id = ap_payment_schedules_all.invoice_id
       )

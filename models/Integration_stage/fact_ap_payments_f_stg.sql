@@ -248,11 +248,11 @@ from
       left join ap_lookup_codes lookup_codes on lookup_codes.lookup_type = 'check state' 
       and lookup_codes.lookup_code = checks_all.status_lookup_code 
       left join ce_payment_documents ce_payment_documents on checks_all.payment_document_id = ce_payment_documents.payment_document_id 
-      left join iby_payments_all iby_payments_all on checks_all.payment_id = iby_payments_all.payment_id 
+      left join iby_payment iby_payments_all on checks_all.payment_id = iby_payments_all.payment_id 
       left join ap_terms_tl terms_tl on invoices_all.terms_id = terms_tl.term_id 
       and coalesce(terms_tl.language, 'us') = 'us' 
       left join gl_ledger gl_ledger on gl_ledger.ledger_id = invoice_payments_all.set_of_books_id 
-      left join gl_code_combinations gl_code_combinations on gl_code_combinations.code_combination_id = invoices_all.accts_pay_code_combination_id 
+      left join gl_code_combination gl_code_combinations on gl_code_combinations.code_combination_id = invoices_all.accts_pay_code_combination_id 
       left join iby_payment_method_translation iby_payment_method_translation on iby_payments_all.payment_method_code = iby_payment_method_translation.payment_method_code 
       and coalesce(
         iby_payment_method_translation.language, 
