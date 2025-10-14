@@ -2,5 +2,5 @@
 
 select
   *,
-  invoice_line_id as integration_id
+  INVOICE_ID||'~'||LINE_NUMBER as integration_id
 from {{ source("ebs", "ap_invoice_lines_all") }}
