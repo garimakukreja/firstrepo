@@ -5,7 +5,7 @@
 ) }}
 
 select
-    *,
+      *,
     batch_id as integration_id
 from {{ source("ebs", "ap_batches_all") }}
 {{ incremental_filter_condition('last_update_date') }}
