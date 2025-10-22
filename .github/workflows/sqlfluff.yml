@@ -1,0 +1,19 @@
+name: SQLFluff Lint (Single Model)
+
+on:
+  workflow_dispatch:   # allows you to run manually
+  pull_request:
+    paths:
+      - 'models/Consumption/ap_batches_all.sql'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: |
+          pip install sqlfluff sqlfluff-templater-dbt
+          sqlfluff lint models/Consumption/ap_batches_all.sql --dialect redshift --templater dbt
